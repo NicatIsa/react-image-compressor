@@ -1,19 +1,17 @@
 version: 0.2
 
 phases:
-  install:
-    runtime-versions:
-      docker: 19.03
   pre_build:
     commands:
-      - $(aws ecr get-login --no-include-email --region "eu-central-1")
-      - COMMIT_HASH=$(git rev-parse --short HEAD)
-      - IMAGE_TAG=${COMMIT_HASH:=latest}
+      - echo Logging in to Amazon ECR...
+      - $(aws ecr get-login --region "eu-central-1" --no-include-email)
   build:
     commands:
-      - docker build -t $REPOSITORY_URI:latest .
-      - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
+      - echo Build started on `date`
+      - echo Building the Docker image...
+      - docker build -t react-compressor-image .
   post_build:
     commands:
-      - docker push $REPOSITORY_URI:latest
-      - docker push $REPOSITORY_URI:$IMAGE_TAG
+      - echo Build completed on `date`
+      - echo Pushing the Docker image...
+      - docker push react-compressor-image:tag
