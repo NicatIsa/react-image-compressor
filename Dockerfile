@@ -1,4 +1,4 @@
-FROM node:14-buster-slim
+FROM node
 WORKDIR /usr/app
 COPY . .
 RUN npm install 
