@@ -9,7 +9,7 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...
-      - docker build -t react-compressor-image .
+      - docker build -t react-compressor-image Dockerfile
   post_build:
     commands:
       - echo Build completed on `date`
