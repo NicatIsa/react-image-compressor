@@ -9,7 +9,8 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...
-      - docker build -t react-compressor-image Dockerfile
+      - docker build -t react-compressor-image .
+      - docker tag $IMAGE_REPO_NAME:$IMAGE_TAG 184245821971.dkr.ecr.eu-central-1.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
   post_build:
     commands:
       - echo Build completed on `date`
