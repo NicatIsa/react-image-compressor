@@ -57,6 +57,22 @@ resource "aws_codebuild_project" "project" {
     image        = "aws/codebuild/standard:5.0"
     type         = "LINUX_CONTAINER"
     image_pull_credentials_type = "CODEBUILD"
+    environment_variable {
+      name  = "AWS_DEFAULT_REGION"
+      value = "eu-central-1"
+    }
+    environment_variable {
+      name  = "AWS_ACCOUNT_ID"
+      value = "AKIASVZPIEIJSNYOSTXG"
+    }
+    environment_variable {
+      name  = "IMAGE_REPO_NAME"
+      value = "react-image-compressor"
+    }
+    environment_variable {
+      name  = "IMAGE_TAG"
+      value = "latest"
+    }
   }
 
   source {
