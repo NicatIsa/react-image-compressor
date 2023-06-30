@@ -3,13 +3,11 @@ services:
   node-app:
     build: .
     command: npm start
-    ports:
-      - "3000:3000"
   nginx:
     build:
-      context: .
+      context: ./nginx
       dockerfile: Dockerfile.nginx
     ports:
       - "8080:80"  
     depends_on:
-      - node-app    
+      - node-app
